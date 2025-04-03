@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        *{
+            margin:0%;
+            padding:0%;
+            box-sizing: border-box;
+        }
+        
+        html,body{
+            height:100%;
+            width:100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: gray;
+        }
+        #main{
+            background-color: rgb(208, 202, 202);
+            width: 80vw;
+            height: 90vh;
+            margin: 5vh 10vw;
+            border: 2px solid black;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        @media (min-width : 650px){
+            #main{
+                width: 30vw;
+            }
+        }
+
+        h1{
+            font-style: italic;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: x-large; 
+            font-weight: 700;
+        }
+        form{
+            margin-top: 30px;
+            padding: 20px;
+            label{
+                font-size: x-large;
+            }
+            input{
+                padding: 15px;
+                font-size: larger;
+                border-radius: 10px;
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+
+            }
+            #passVerify , #userVerify{
+                font: 1em sans-serif;
+                color: red;
+                margin-left: 4px;
+                margin-bottom: 20px;
+                display: none;
+                
+            }
+
+            button{
+                padding: 20px;
+                background-color: greenyellow;
+                position: relative;
+                right: -180px;
+                border-radius: 10px;
+                margin-top: 20px;
+            }
+
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div id="main">
+        <h1>Login your Account</h1>
+        <form action="admission.html" id="form" method="get">
+            <label for="username">Username : </label>
+            <input type="text" name="username" id="username" placeholder="Enter your name">
+            <div id="userVerify" class="hide">
+                <small>username can't be empty* </small>
+            </div>
+        
+            <label for="password">Enter Password : </label>
+            <input type="password" id="password" name="password" placeholder="........">
+            <div id="passVerify" class="hide">
+                <small>Password length must be atleast 8.</small>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById("form");
+        const username = document.getElementById("username");
+        const password = document.getElementById("password");
+        const userValidate = document.getElementById("userVerify");
+        const passValidate = document.getElementById("passVerify");
+        form.addEventListener("submit" , function(e){
+            if(verify()){
+                form.action = "admission.html";
+            }
+            else{
+                e.preventDefault();
+            }
+            
+        })
+        function verify(){
+             if(username.value){
+                userValidate.style.display = "none";
+                if(!(password.value) || password.value.length < 8 ){
+                    passValidate.style.display = "block";
+                }
+                else{
+                    passValidate.style.display = "none";
+                    return true;
+                }
+             }else{
+                userValidate.style.display = "block";
+             } 
+             
+        }
+    </script>
+</body>
+</html>
